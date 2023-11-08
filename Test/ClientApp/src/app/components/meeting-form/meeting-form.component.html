@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Meeting</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="form">
+
+        <mat-form-field>
+            <input matInput placeholder="Student ID" formControlName="studentID">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Meeting Date</mat-label>
+            <input matInput [matDatepicker]="meetingDate" formControlName="meetingDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="meetingDate"></mat-datepicker-toggle>
+            <mat-datepicker #meetingDate></mat-datepicker>
+            <mat-error *ngIf="form.get('meetingDate')?.hasError('required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Subject" formControlName="subject">
+            <mat-error *ngIf="form.get('subject')?.hasError('required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Details" formControlName="details">
+            <mat-error *ngIf="form.get('details')?.hasError('required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Next meeting</mat-label>
+            <input matInput [matDatepicker]="nextMeeting" formControlName="nextMeeting">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="nextMeeting"></mat-datepicker-toggle>
+            <mat-datepicker #nextMeeting></mat-datepicker>
+            <mat-error *ngIf="form.get('nextMeeting')?.hasError('required')">You must enter a value</mat-error>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button cdkFocusInitial (click)="save()" [disabled]="!form.valid">Save</button>
+</mat-dialog-actions>

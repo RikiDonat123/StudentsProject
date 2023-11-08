@@ -1,0 +1,7 @@
+<mat-form-field>
+    <input matInput placeholder="Search by Name or ID" #search>
+</mat-form-field>
+
+<button mat-button (click)="searchStudent(search.value)">Search</button>
+
+<app-students-table *ngIf="dataSource" [dataSource]="dataSource"></app-students-table>
